@@ -133,4 +133,4 @@ Plug 'PProvost/vim-ps1'
 call plug#end()
 
 " Use the Windows clipboard as the default Vim register
-set clipboard=unnamedplus
+set clipboard=unnamed

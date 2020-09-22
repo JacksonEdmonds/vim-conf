@@ -135,11 +135,9 @@ call plug#end()
 set clipboard=unnamed
 
 " to fix cursor shape in WSL bash add 
-if &term =~ "xterm"
-	let &t_SI = "\<Esc>[6 q"
-	let &t_SR = "\<Esc>[3 q"
-	let &t_EI = "\<Esc>[2 q"
-endif
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_EI = "\<Esc>[2 q"
 
 " Temporary fix for Windows Terminal replace bug
 set t_u7 = 

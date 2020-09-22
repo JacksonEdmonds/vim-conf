@@ -71,7 +71,6 @@ set vb
 " Allow unsaved buffers to run in the background
 set hidden
 
-"set viminfo=%,'100,<50,s10,h,rA:,rB:
 set viminfo=%,'200,/50,:50,h
 "           | |    |   |   |
 "           | |    |   |   |
@@ -134,3 +133,13 @@ call plug#end()
 
 " Use the Windows clipboard as the default Vim register
 set clipboard=unnamed
+
+" to fix cursor shape in WSL bash add 
+if &term =~ "xterm"
+	let &t_SI = "\<Esc>[6 q"
+	let &t_SR = "\<Esc>[3 q"
+	let &t_EI = "\<Esc>[2 q"
+endif
+
+" Temporary fix for Windows Terminal replace bug
+set t_u7 = 

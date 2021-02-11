@@ -124,7 +124,7 @@ set spelllang=en
 map <leader>s :!clear && shellcheck %<CR>
 
 " Plugins (managed with vim-plug, installed with command :PlugInstall)
-call plug#begin('./.vim/plugged')
+call plug#begin('~/.vim/plugged')
 " Enable tab completion
 Plug 'ajh17/VimCompletesMe'
 " Enable PowerShell file detection and highlighting 

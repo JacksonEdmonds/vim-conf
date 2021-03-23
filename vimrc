@@ -2,16 +2,16 @@
 noremap <LeftDrag> <LeftMouse>
 noremap! <LeftDrag> <LeftMouse>
 
-" Set tabs to 4 columns in width
-set tabstop=4
-set shiftwidth=4
+" Set tabs to 2 columns in width
+set tabstop=2
+set shiftwidth=2
 
 " Indicate indentation level with |
 set listchars=tab:\|\ 
 set list
 
 " Use {{{ and }}} for folds
-set foldmethod=marker
+set foldmethod=syntax
 
 " Universally set encoding to utf-8
 set encoding=utf-8
@@ -117,18 +117,26 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Faster completion
+set updatetime=300
+
+" By default timeoutlen is 1000 ms
+set timeoutlen=500
+
 " Enable spell checking language (enable with set spell)
 set spelllang=en
 
 " Use \s to check file in shellcheck (Only works on Linux)
 map <leader>s :!clear && shellcheck %<CR>
 
+let g:ale_completion_enabled=1
+
 " Plugins (managed with vim-plug, installed with command :PlugInstall)
 call plug#begin('~/.vim/plugged')
-" Enable tab completion
-Plug 'ajh17/VimCompletesMe'
-" Enable PowerShell file detection and highlighting 
-Plug 'PProvost/vim-ps1'
+	" Enable file detection and highlighting for a large number of languages
+	Plug 'sheerun/vim-polyglot'
+	" Enable vim renamer
+	Plug 'qpkorr/vim-renamer'
 call plug#end()
 
 " Use the Windows clipboard as the default Vim register
@@ -139,5 +147,13 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[2 q"
 
-" Temporary fix for Windows Terminal replace bug
-set t_u7 = 
+" Automatically install missing plugins on startup
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+	autocmd VimEnter * PlugInstall
+endif
+
+" Automatically uninstall removed plugins on startup
+if len(filter(split(globpath(g:plug_home, '*'), "\n"), 'isdirectory(v:val)'))
+	\ > len(filter(values(g:plugs), 'stridx(v:val.dir, g:plug_home) == 0'))
+	autocmd VimEnter * PlugClean
+endif

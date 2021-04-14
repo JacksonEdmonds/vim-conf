@@ -129,14 +129,10 @@ set spelllang=en
 " Use \s to check file in shellcheck (Only works on Linux)
 map <leader>s :!clear && shellcheck %<CR>
 
-let g:ale_completion_enabled=1
-
 " Plugins (managed with vim-plug, installed with command :PlugInstall)
 call plug#begin('~/.vim/plugged')
 	" Enable file detection and highlighting for a large number of languages
 	Plug 'sheerun/vim-polyglot'
-	" Enable vim renamer
-	Plug 'qpkorr/vim-renamer'
 call plug#end()
 
 " Use the Windows clipboard as the default Vim register

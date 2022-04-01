@@ -131,27 +131,23 @@ set spelllang=en
 " Use \s to check file in shellcheck (Only works on Linux)
 map <leader>s :!clear && shellcheck %<CR>
 
-" Plugins (managed with vim-plug, installed with command :PlugInstall)
-call plug#begin('~/.vim/plugged')
-	" Enable file detection and highlighting for a large number of languages
-	Plug 'sheerun/vim-polyglot'
-call plug#end()
-
 " Use the Windows clipboard as the default Vim register
 set clipboard=unnamed
 
-" to fix cursor shape in WSL bash add
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[3 q"
-let &t_EI = "\<Esc>[2 q"
-
-" Automatically install missing plugins on startup
-if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-	autocmd VimEnter * PlugInstall
-endif
-
-" Automatically uninstall removed plugins on startup
-if len(filter(split(globpath(g:plug_home, '*'), "\n"), 'isdirectory(v:val)'))
-	\ > len(filter(values(g:plugs), 'stridx(v:val.dir, g:plug_home) == 0'))
-	autocmd VimEnter * PlugClean
-endif
+"" Plugins (managed with vim-plug, installed with command :PlugInstall)
+"call plug#begin('~/.vim/plugged')
+"	" Enable file detection and highlighting for a large number of languages
+"	Plug 'sheerun/vim-polyglot'
+"call plug#end()
+"
+"" Automatically install missing plugins on startup
+"if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"	autocmd VimEnter * PlugInstall
+"endif
+"
+"" Automatically uninstall removed plugins on startup
+"if len(filter(split(globpath(g:plug_home, '*'), "\n"), 'isdirectory(v:val)'))
+"	\ > len(filter(values(g:plugs), 'stridx(v:val.dir, g:plug_home) == 0'))
+"	autocmd VimEnter * PlugClean
+"endif
+"

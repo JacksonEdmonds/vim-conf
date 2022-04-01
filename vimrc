@@ -7,8 +7,15 @@ set tabstop=2
 set shiftwidth=2
 
 " Indicate indentation level with |
-set listchars=tab:\|\ 
+set listchars=tab:\|\
 set list
+
+" Set cursor to non-blinking block on start
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+" Set cursor on mode switch
+let &t_SI.="\e[6 q" "SI = INSERT mode, non-blinking bar
+let &t_SR.="\e[4 q" "SR = REPLACE mode, non-blinking underline
+let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE), non-blinking block
 
 " Use {{{ and }}} for folds
 set foldmethod=syntax
@@ -23,9 +30,6 @@ set fileformat=unix
 
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Don't wrap lines
-set nowrap
 
 " Display line numbers
 set number
@@ -65,8 +69,9 @@ set ai "Auto indent, copy indent from previous line when starting a new line
 set cindent "C style smart indenting (automatically indents based on code structure when starting a new line)
 set cinkeys-=0# "Allow indenting of #
 
-" Set visual bell
-set vb
+" Disable bell
+set noeb vb t_vb=
+au GUIEnter * set vb t_vb=
 
 " Allow unsaved buffers to run in the background
 set hidden
@@ -120,9 +125,6 @@ map <C-l> <C-w>l
 " Faster completion
 set updatetime=300
 
-" By default timeoutlen is 1000 ms
-set timeoutlen=500
-
 " Enable spell checking language (enable with set spell)
 set spelllang=en
 
@@ -138,7 +140,7 @@ call plug#end()
 " Use the Windows clipboard as the default Vim register
 set clipboard=unnamed
 
-" to fix cursor shape in WSL bash add 
+" to fix cursor shape in WSL bash add
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[2 q"

@@ -31,6 +31,9 @@ set fileformat=unix
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Don't wait for commands following a key code - allows for immediate entry to NORMAL mode after hitting escape
+set ttimeoutlen=0
+
 " Display line numbers
 set number
 

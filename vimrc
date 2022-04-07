@@ -6,10 +6,6 @@ noremap! <LeftDrag> <LeftMouse>
 set tabstop=2
 set shiftwidth=2
 
-" Indicate indentation level with |
-set listchars=tab:\|\
-set list
-
 " Set cursor to non-blinking block on start
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 " Set cursor on mode switch
@@ -137,6 +133,8 @@ map <leader>s :!clear && shellcheck %<CR>
 " Use the Windows clipboard as the default Vim register
 set clipboard=unnamed
 
+" TODO Automatically sync vimrc with Github
+" TODO Indentation line
 "" Plugins (managed with vim-plug, installed with command :PlugInstall)
 "call plug#begin('~/.vim/plugged')
 "	" Enable file detection and highlighting for a large number of languages
